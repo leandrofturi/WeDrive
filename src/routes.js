@@ -5,7 +5,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import AuthGuard from './guards/AuthGuard';
 import GuestGuard from './guards/GuestGuard';
 // layouts
-import LogoOnlyLayout from './layouts/LogoOnlyLayout';
+import MainLayout from './layouts/main';
 
 // ----------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ export default function Router() {
       path: 'app',
       element: (
         <AuthGuard>
-          <LogoOnlyLayout />
+          <MainLayout />
         </AuthGuard>
       ),
       children: [
@@ -55,15 +55,7 @@ export default function Router() {
     },
 
     // Main Routes
-    {
-      path: '*',
-      element: <LogoOnlyLayout />,
-      children: [
-        { path: '404', element: <NotFound /> },
-        { path: '*', element: <Navigate to="/404" replace /> },
-      ],
-    },
-    { path: '*', element: <Navigate to="/404" replace /> },
+    { path: '*', element: <Home/> },
   ])
 }
 
@@ -71,5 +63,3 @@ const Login = Loadable(lazy(() => import('./pages/Login')));
 const Register = Loadable(lazy(() => import('./pages/Register')));
 
 const Home = Loadable(lazy(() => import('./pages/Home')));
-
-const NotFound = Loadable(lazy(() => import('./pages/NotFound')));
