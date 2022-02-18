@@ -9,6 +9,8 @@ import useResponsive from '../../hooks/useResponsive';
 import cssStyles from '../../utils/cssStyles';
 // config
 import { MAIN_HEADER_DESKTOP, MAIN_HEADER_MOBILE } from '../../config';
+// paths
+import { PATH_AUTH } from '../../paths';
 // components
 import Logo from '../../components/Logo';
 //
@@ -73,18 +75,17 @@ export default function MainHeader() {
             justifyContent: 'space-between',
           }}
         >
-          <Logo />
+
+          {isOffset && <Logo />}
           <Box sx={{ flexGrow: 1 }} />
 
           {isDesktop && <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}
 
           <Button
             variant="contained"
-            target="_blank"
-            rel="noopener"
-            href="https://material-ui.com/store/items/minimal-dashboard/"
+            href={PATH_AUTH.login}
           >
-            Purchase Now
+            Assessar
           </Button>
 
           {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}

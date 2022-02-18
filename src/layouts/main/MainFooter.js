@@ -12,25 +12,25 @@ import SocialsButton from '../../components/SocialsButton';
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'WeDrive',
     children: [
-      { name: 'About us', href: PATH_PAGE.about },
-      { name: 'Contact us', href: PATH_PAGE.contact },
+      { name: 'Sobre nós', href: PATH_PAGE.about },
+      { name: 'Contate-nos', href: PATH_PAGE.contact },
       { name: 'FAQs', href: PATH_PAGE.faqs },
     ],
   },
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
+      { name: 'Termos e Condições', href: '#' },
+      { name: 'Política de Privacidade', href: '#' },
     ],
   },
   {
-    headline: 'Contact',
+    headline: 'Contato',
     children: [
-      { name: 'support@minimals.cc', href: '#' },
-      { name: 'Los Angeles, 359  Hidden Valley Road', href: '#' },
+      { name: 'email@email.com', href: '#' },
+      { name: 'Av. Fernando Ferrari, 514 - Goiabeiras, Vitória - ES', href: '#' },
     ],
   },
 ];
@@ -57,8 +57,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              The starting point for your next project with Minimal UI Kit, built on the newest version of Material-UI
-              ©, ready to be customized to your style.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a ultrices sem, vitae pharetra eros.
             </Typography>
 
             <Stack
@@ -105,7 +104,7 @@ export default function MainFooter() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          © 2021. All rights reserved
+          © 2022. Todos os direitos reservados
         </Typography>
       </Container>
     </RootStyle>

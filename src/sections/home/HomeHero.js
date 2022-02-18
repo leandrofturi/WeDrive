@@ -48,7 +48,7 @@ const HeroOverlayStyle = styled(m.img)({
 });
 
 const HeroImgStyle = styled(m.img)(({ theme }) => ({
-  top: 0,
+  top: 40,
   right: 0,
   bottom: 0,
   zIndex: 8,
@@ -85,7 +85,7 @@ export default function HomeHero() {
             <m.div variants={varFade().inRight}>
               <Typography variant="h2" sx={{ color: 'common.white' }}>
                 Inicie uma <br />
-                nova jornada <br /> com
+                nova jornada <br /> com a
                 <Typography component="span" variant="h1" sx={{ color: 'primary.main' }}>
                   &nbsp;WeDrive
                 </Typography>

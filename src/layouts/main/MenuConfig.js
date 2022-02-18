@@ -1,5 +1,5 @@
 // routes
-import { PATH_DOCS, PATH_PAGE } from '../../paths';
+import { PATH_AUTH, PATH_PAGE } from '../../paths';
 // components
 import Iconify from '../../components/Iconify';
 
@@ -17,14 +17,19 @@ const menuConfig = [
     path: '/',
   },
   {
-    title: 'Components',
-    icon: <Iconify icon={'ic:round-grain'} {...ICON_SIZE} />,
-    path: PATH_PAGE.components,
+    title: 'Para você',
+    icon: <Iconify icon={'bi:pin-map-fill'} {...ICON_SIZE} />,
+    path: PATH_AUTH.login,
   },
   {
-    title: 'Documentation',
+    title: 'Para seu negócio',
+    icon: <Iconify icon={'bi:pin-map'} {...ICON_SIZE} />,
+    path: PATH_AUTH.loginCompany,
+  },
+  {
+    title: 'FAQs',
     icon: <Iconify icon={'eva:book-open-fill'} {...ICON_SIZE} />,
-    path: PATH_DOCS,
+    path: PATH_PAGE.faqs,
   },
 ];
 

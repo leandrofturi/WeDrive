@@ -55,7 +55,16 @@ export default function Router() {
     },
 
     // Main Routes
-    { path: '*', element: <Home/> },
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        { element: <Home />, index: true },
+        { path: 'about-us', element: <div /> },
+        { path: 'contact-us', element: <div /> },
+        { path: 'faqs', element: <FAQs /> },
+      ]
+    }
   ])
 }
 
@@ -63,3 +72,4 @@ const Login = Loadable(lazy(() => import('./pages/Login')));
 const Register = Loadable(lazy(() => import('./pages/Register')));
 
 const Home = Loadable(lazy(() => import('./pages/Home')));
+const FAQs = Loadable(lazy(() => import('./pages/FAQs')));

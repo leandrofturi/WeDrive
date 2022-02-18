@@ -1,12 +1,10 @@
-import { capitalCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/material';
+import { Box, Card, Stack, Link, Container, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../paths';
 // hooks
-import useAuth from '../hooks/useAuth';
 import useResponsive from '../hooks/useResponsive';
 // components
 import Page from '../components/Page';
@@ -61,8 +59,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Login() {
-  const { method } = useAuth();
-
   const smUp = useResponsive('up', 'sm');
   const mdUp = useResponsive('up', 'md');
 
@@ -83,13 +79,13 @@ export default function Login() {
 
         {mdUp && (
           <SectionStyle>
-            <Typography variant="h3" sx={{ px: 5, mt: 10 }}>
-              Olá,<br />Bem-vindo de volta!
+            <Typography variant="h3" sx={{ px: 5, mt: 15, mb: -5 }}>
+              Bem-vindo de volta!
             </Typography>
             <Image
               alt="login"
-              src="/assets/login.svg"
-              sx={{ width: 400 }}
+              src="/assets/maps.svg"
+              sx={{ transform: 'scale(0.8)' }}
             />
           </SectionStyle>
         )}
@@ -99,9 +95,9 @@ export default function Login() {
             <Stack direction="row" alignItems="center" sx={{ mb: 5 }}>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography variant="h4" gutterBottom>
-                  Entrar
+                  Acessar sua conta
                 </Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Insira seus dados abaixo</Typography>
+                <Typography sx={{ color: 'text.secondary' }}>Insira seus dados abaixo.</Typography>
               </Box>
             </Stack>
 
@@ -109,7 +105,7 @@ export default function Login() {
 
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-                Não possui uma conta?{' '}
+                Não possui uma conta? {' '}
                 <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
                   Cadastre-se
                 </Link>

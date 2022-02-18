@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 
 export default function Logo() {
   return (
-    <Box sx={{ width: 40, height: 40 }}>
+    <Box sx={{ width: 60, height: 60 }}>
       <svg width="100%" height="100%" viewBox="0 0 628 319" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M623 222.5V168C620.5 97 596 78 592 74C589 71 568.5 48 474 48H319" stroke="#1E2022" strokeWidth="10" />
         <path d="M309 48L275 48" stroke="#1E2022" strokeWidth="10" />
