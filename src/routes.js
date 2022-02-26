@@ -49,8 +49,8 @@ export default function Router() {
         </AuthGuard>
       ),
       children: [
-        { element: <Navigate to="/app/home" replace />, index: true },
-        { path: 'home', element: <Home /> },
+        { element: <Navigate to="/app/departures" replace />, index: true },
+        { path: 'departures', element: <Departures /> },
       ]
     },
 
@@ -73,3 +73,5 @@ const Register = Loadable(lazy(() => import('./pages/Register')));
 
 const Home = Loadable(lazy(() => import('./pages/Home')));
 const FAQs = Loadable(lazy(() => import('./pages/FAQs')));
+
+const Departures = Loadable(lazy(() => import('./pages/Departures')));

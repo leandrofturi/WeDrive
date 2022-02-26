@@ -1,6 +1,6 @@
 import { useLocation, Outlet } from 'react-router-dom';
 // @mui
-import { Box, Link, Container, Typography, Stack } from '@mui/material';
+import { Box, Container, Typography, Stack } from '@mui/material';
 // components
 import Logo from '../../components/Logo';
 //
@@ -36,9 +36,7 @@ export default function MainLayout() {
             <Logo sx={{ mb: 1, mx: 'auto' }} />
 
             <Typography variant="caption" component="p">
-              © All rights reserved
-              <br /> made by &nbsp;
-              <Link href="https://minimals.cc/">minimals.cc</Link>
+              © 2022. Todos os direitos reservados
             </Typography>
           </Container>
         </Box>

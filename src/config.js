@@ -1,3 +1,8 @@
+// API
+// ----------------------------------------------------------------------
+
+export const MAPBOX_API = 'pk.eyJ1IjoibGVhbmRyb2Z0dXJpIiwiYSI6ImNsMDQ1eWc3bjE3dXozcG9kNjhxNXh1eW8ifQ.u_rUuVJQ4QKSKCt5uNUYNw';
+
 // LAYOUT
 // ----------------------------------------------------------------------
 
