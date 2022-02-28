@@ -1,19 +1,15 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // @mui
+import { Box, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// hooks
-import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // config
 import {
-  DASHBOARD_NAVBAR_WIDTH,
   DASHBOARD_HEADER_MOBILE,
   DASHBOARD_HEADER_DESKTOP,
-  DASHBOARD_NAVBAR_COLLAPSE_WIDTH,
 } from '../../config';
 //
 import DashboardHeader from './header';
-import DashboardNavbar from './navbar';
+import DashboardFooter from './DashboardFooter';
 
 // ----------------------------------------------------------------------
 
@@ -24,9 +20,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-const MainStyle = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'collapseClick',
-})(({ collapseClick, theme }) => ({
+const MainStyle = styled('main')(({ theme }) => ({
   flexGrow: 1,
   paddingTop: DASHBOARD_HEADER_MOBILE + 24,
   paddingBottom: DASHBOARD_HEADER_MOBILE + 24,
@@ -34,33 +28,26 @@ const MainStyle = styled('main', {
     paddingLeft: 16,
     paddingRight: 16,
     paddingTop: DASHBOARD_HEADER_DESKTOP + 24,
-    paddingBottom: DASHBOARD_HEADER_DESKTOP + 24,
-    width: `calc(100% - ${DASHBOARD_NAVBAR_WIDTH}px)`,
-    transition: theme.transitions.create('margin-left', {
-      duration: theme.transitions.duration.shorter,
-    }),
-    ...(collapseClick && {
-      marginLeft: DASHBOARD_NAVBAR_COLLAPSE_WIDTH,
-    }),
+    paddingBottom: DASHBOARD_HEADER_DESKTOP + 24
   },
 }));
 
 // ----------------------------------------------------------------------
 
 export default function DashboardLayout() {
-  const { collapseClick } = useCollapseDrawer();
-
-  const [open, setOpen] = useState(false);
-
   return (
-    <RootStyle>
-      <DashboardHeader onOpenSidebar={() => setOpen(true)} />
+    <Stack sx={{ minHeight: 1 }}>
+      <RootStyle>
+        <DashboardHeader />
 
-      <DashboardNavbar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+        <MainStyle >
+          <Outlet />
+        </MainStyle>
 
-      <MainStyle collapseClick={collapseClick}>
-        <Outlet />
-      </MainStyle>
-    </RootStyle>
+        <Box sx={{ flexGrow: 1 }} />
+      </RootStyle>
+
+      <DashboardFooter />
+    </Stack>
   );
 }

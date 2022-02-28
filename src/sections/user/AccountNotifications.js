@@ -3,34 +3,18 @@ import { useFormik, Form, FormikProvider } from 'formik';
 // @mui
 import { Card, Switch, Stack, Typography, FormControlLabel } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+//
+import { _activity_options, _application_options } from '../../_mock';
 
 // ----------------------------------------------------------------------
 
-const ACTIVITY_OPTIONS = [
-  {
-    value: 'activityComments',
-    label: 'Email me when someone comments onmy article',
-  },
-  {
-    value: 'activityAnswers',
-    label: 'Email me when someone answers on my form',
-  },
-  { value: 'activityFollows', label: 'Email me hen someone follows me' },
-];
-
-const APPLICATION_OPTIONS = [
-  { value: 'applicationNews', label: 'News and announcements' },
-  { value: 'applicationProduct', label: 'Weekly product updates' },
-  { value: 'applicationBlog', label: 'Weekly blog digest' },
-];
-
 const NOTIFICATION_SETTINGS = {
-  activityComments: true,
-  activityAnswers: true,
-  activityFollows: false,
-  applicationNews: true,
-  applicationProduct: false,
-  applicationBlog: false,
+  not1: true,
+  not2: true,
+  not3: false,
+  not4: true,
+  not5: false,
+  not6: false,
 };
 
 // ----------------------------------------------------------------------
@@ -41,17 +25,17 @@ export default function AccountNotifications() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      activityComments: NOTIFICATION_SETTINGS.activityComments,
-      activityAnswers: NOTIFICATION_SETTINGS.activityAnswers,
-      activityFollows: NOTIFICATION_SETTINGS.activityFollows,
-      applicationNews: NOTIFICATION_SETTINGS.applicationNews,
-      applicationProduct: NOTIFICATION_SETTINGS.applicationProduct,
-      applicationBlog: NOTIFICATION_SETTINGS.applicationBlog,
+      not1: NOTIFICATION_SETTINGS.not1,
+      not2: NOTIFICATION_SETTINGS.not2,
+      not3: NOTIFICATION_SETTINGS.not3,
+      not4: NOTIFICATION_SETTINGS.not4,
+      not5: NOTIFICATION_SETTINGS.not5,
+      not6: NOTIFICATION_SETTINGS.not6,
     },
     onSubmit: async (values, { setSubmitting }) => {
       await new Promise((resolve) => setTimeout(resolve, 500));
       setSubmitting(false);
-      enqueueSnackbar('Save success', { variant: 'success' });
+      enqueueSnackbar('Salvo', { variant: 'success' });
     },
   });
 
@@ -64,13 +48,13 @@ export default function AccountNotifications() {
           <Stack spacing={3} alignItems="flex-end">
             <Stack spacing={2} sx={{ width: 1 }}>
               <Typography variant="overline" sx={{ color: 'text.secondary' }}>
-                Activity
+                Atividades
               </Typography>
               <Stack spacing={1} alignItems="flex-start">
-                {ACTIVITY_OPTIONS.map((activity) => (
+                {_activity_options.map((activity) => (
                   <FormControlLabel
-                    key={activity.value}
-                    control={<Switch {...getFieldProps(activity.value)} checked={values[activity.value]} />}
+                    key={activity.key}
+                    control={<Switch {...getFieldProps(activity.key)} checked={values[activity.key]} />}
                     label={activity.label}
                     sx={{ mx: 0 }}
                   />
@@ -80,13 +64,13 @@ export default function AccountNotifications() {
 
             <Stack spacing={2} sx={{ width: 1 }}>
               <Typography variant="overline" sx={{ color: 'text.secondary' }}>
-                Application
+                Aplicação
               </Typography>
               <Stack spacing={1} alignItems="flex-start">
-                {APPLICATION_OPTIONS.map((item) => (
+                {_application_options.map((item) => (
                   <FormControlLabel
-                    key={item.value}
-                    control={<Switch {...getFieldProps(item.value)} checked={values[item.value]} />}
+                    key={item.key}
+                    control={<Switch {...getFieldProps(item.key)} checked={values[item.key]} />}
                     label={item.label}
                     sx={{ mx: 0 }}
                   />

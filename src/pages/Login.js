@@ -70,7 +70,7 @@ export default function Login() {
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Não possui uma conta? {''}
-              <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
+              <Link variant="subtitle2" component={RouterLink} to={window.location.pathname.endsWith('company') ? PATH_AUTH.registerCompany : PATH_AUTH.register}>
                 Cadastre-se
               </Link>
             </Typography>
@@ -106,7 +106,7 @@ export default function Login() {
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
                 Não possui uma conta? {' '}
-                <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
+                <Link variant="subtitle2" component={RouterLink} to={window.location.pathname.endsWith('company') ? PATH_AUTH.registerCompany : PATH_AUTH.register}>
                   Cadastre-se
                 </Link>
               </Typography>

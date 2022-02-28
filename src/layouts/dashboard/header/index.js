@@ -1,45 +1,32 @@
-import PropTypes from 'prop-types';
 // @mui
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar } from '@mui/material';
-// hooks
-import useResponsive from '../../../hooks/useResponsive';
-import useCollapseDrawer from '../../../hooks/useCollapseDrawer';
+import { Box, Stack, AppBar, Toolbar, Tooltip } from '@mui/material';
+// components
+import Logo from '../../../components/Logo';
+import Iconify from '../../../components/Iconify';
+import { IconButtonAnimate } from '../../../components/animate';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
 import {
-  DASHBOARD_NAVBAR_WIDTH,
-  DASHBOARD_NAVBAR_COLLAPSE_WIDTH,
   DASHBOARD_HEADER_MOBILE,
   DASHBOARD_HEADER_DESKTOP,
 } from '../../../config';
-// components
-import Iconify from '../../../components/Iconify';
-import { IconButtonAnimate } from '../../../components/animate';
+// paths
+import { PATH_COMPANY } from '../../../paths';
 //
-import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
-import LanguagePopover from './LanguagePopover';
-import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== 'isCollapse',
-})(({ isCollapse, theme }) => ({
+const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
   ...cssStyles(theme).bgBlur(),
   transition: theme.transitions.create('width', {
     duration: theme.transitions.duration.shorter,
-  }),
-  [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - ${DASHBOARD_NAVBAR_WIDTH + 1}px)`,
-    ...(isCollapse && {
-      width: `calc(100% - ${DASHBOARD_NAVBAR_COLLAPSE_WIDTH}px)`,
-    }),
-  },
+  })
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -52,32 +39,38 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-DashboardHeader.propTypes = {
-  onOpenSidebar: PropTypes.func,
-};
-
-export default function DashboardHeader({ onOpenSidebar }) {
-  const { isCollapse } = useCollapseDrawer();
-
-  const isDesktop = useResponsive('up', 'lg');
+export default function DashboardHeader() {
+  const navigate = useNavigate();
 
   return (
-    <RootStyle isCollapse={isCollapse}>
+    <RootStyle >
       <ToolbarStyle>
-        {!isDesktop && (
-          <IconButtonAnimate onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary' }}>
-            <Iconify icon="eva:menu-2-fill" />
-          </IconButtonAnimate>
-        )}
+        <Logo sx={{ mx: { xs: 'auto', md: 'inherit' } }} />
 
-        <Searchbar />
+        {window.location.pathname.startsWith('/company') &&
+          <Box sx={{ px: 3 }}>
+            {!window.location.pathname.endsWith('dashboard') &&
+              <Tooltip title="Dashboard">
+                <IconButtonAnimate onClick={() => { navigate(PATH_COMPANY.dashboard) }}>
+                  <Iconify icon="charm:chart-line" />
+                </IconButtonAnimate>
+              </Tooltip>
+            }
+
+            {!window.location.pathname.endsWith('list-users') &&
+              <Tooltip title="Meus Colaboradores">
+                <IconButtonAnimate onClick={() => { navigate(PATH_COMPANY.user.list) }}>
+                  <Iconify icon="mdi-account-multiple" />
+                </IconButtonAnimate>
+              </Tooltip>
+            }
+          </Box>
+        }
+
         <Box sx={{ flexGrow: 1 }} />
-
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-          <LanguagePopover />
-          <NotificationsPopover />
-          <ContactsPopover />
-          <AccountPopover />
+          <NotificationsPopover app={window.location.pathname.startsWith('/app')} />
+          <AccountPopover app={window.location.pathname.startsWith('/app')} />
         </Stack>
       </ToolbarStyle>
     </RootStyle>

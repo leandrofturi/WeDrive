@@ -23,10 +23,10 @@ function sleep(delay) {
   return new Promise(res => setTimeout(res, delay));
 }
 
-export default function AccountGeneral() {
+export default function AccountGeneral({ isCompany }) {
   const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar } = useSnackbar();
-  const { user } = useAuth();
+  const { user, update } = useAuth();
 
   /* eslint-disable no-useless-escape */
   const UpdateUserSchema = Yup.object().shape({
@@ -39,23 +39,27 @@ export default function AccountGeneral() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      nickname: user?.attributes?.nickname || '',
-      given_name: user?.attributes?.given_name || '',
-      family_name: user?.attributes?.family_name || '',
-      email: user?.attributes?.email || '',
-      phone_number: user?.attributes?.phone_number || '+5599999999999',
-      street: user?.attributes?.street || '',
-      number: user?.attributes?.number || '',
-      complement: user?.attributes?.complement || '',
-      district: user?.attributes?.district || '',
-      state: user?.attributes?.state || '',
-      picture: user?.attributes?.picture || '',
+      nickname: user?.nickname || '',
+      given_name: user?.given_name || '',
+      family_name: user?.family_name || '',
+      email: user?.email || '',
+      phone_number: user?.phone_number || '+5599999999999',
+      street: user?.street || '',
+      number: user?.number || '',
+      complement: user?.complement || '',
+      district: user?.district || '',
+      state: user?.state || '',
+      picture: user?.picture || '',
+      nameCompany: user?.nameCompany || '',
+      emailCompany: user?.emailCompany || '',
+      phone_numberCompany: user?.phone_numberCompany || '+5599999999999',
     },
     validationSchema: UpdateUserSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
       try {
         console.log(values);
         await sleep(2000);
+        await update?.(values);
         enqueueSnackbar('Usuário atualizado', { variant: 'success' });
         if (isMountedRef.current) {
           setSubmitting(false);
@@ -213,39 +217,85 @@ export default function AccountGeneral() {
                   <Divider orientation='horizontal' flexItem sx={{ borderStyle: 'dashed' }} />
                 </Grid>
 
-                <Grid item xs={12} md={12}>
-                  <TextField fullWidth label="Rua" {...getFieldProps('street')} />
-                </Grid>
+                {isCompany ?
+                  (
+                    <>
+                      <Grid item xs={12} md={12}>
+                        <Typography variant="body1" sx={{ pt: 2 }} color='text.disabled'>
+                          Dados da Empresa
+                        </Typography>
+                      </Grid>
 
-                <Grid item xs={12} md={6}>
-                  <TextField fullWidth label="Número" {...getFieldProps('number')} />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField fullWidth label="Complemento" {...getFieldProps('complement')} />
-                </Grid>
+                      <Grid item xs={12} md={12}>
+                        <TextField
+                          fullWidth
+                          label="Razão Social"
+                          {...getFieldProps('nameCompany')}
+                          error={Boolean(touched.nameCompany && errors.nameCompany)}
+                          helperText={touched.nameCompany && errors.nameCompany}
+                        />
+                      </Grid>
 
-                <Grid item xs={12} md={6}>
-                  <TextField fullWidth label="Bairro" {...getFieldProps('district')} />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    select
-                    fullWidth
-                    label="Estado"
-                    placeholder="Estado"
-                    {...getFieldProps('state')}
-                    SelectProps={{ native: true }}
-                    error={Boolean(touched.district && errors.district)}
-                    helperText={touched.district && errors.district}
-                  >
-                    <option value="" />
-                    {STATES_LIST.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </TextField>
-                </Grid>
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          fullWidth
+                          label="E-mail"
+                          {...getFieldProps('emailCompany')}
+                          error={Boolean(touched.emailCompany && errors.emailCompany)}
+                          helperText={touched.emailCompany && errors.emailCompany}
+                        />
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <MuiPhoneNumber
+                          fullWidth
+                          label="Telefone"
+                          variant="outlined"
+                          onlyCountries={["br"]}
+                          localization={{ Brazil: 'Brasil' }}
+                          value={values.phone_numberCompany}
+                          onChange={(value) => setFieldValue('phone_numberCompany', value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''))}
+                        />
+                      </Grid>
+                    </>
+                  ) : (
+                    <>
+                      <Grid item xs={12} md={12}>
+                        <TextField fullWidth label="Rua" {...getFieldProps('street')} />
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <TextField fullWidth label="Número" {...getFieldProps('number')} />
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <TextField fullWidth label="Complemento" {...getFieldProps('complement')} />
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <TextField fullWidth label="Bairro" {...getFieldProps('district')} />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          select
+                          fullWidth
+                          label="Estado"
+                          placeholder="Estado"
+                          {...getFieldProps('state')}
+                          SelectProps={{ native: true }}
+                          error={Boolean(touched.district && errors.district)}
+                          helperText={touched.district && errors.district}
+                        >
+                          <option value="" />
+                          {STATES_LIST.map((option) => (
+                            <option key={option.key} value={option.key}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </TextField>
+                      </Grid>
+                    </>
+                  )}
               </Grid>
 
               <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>

@@ -4,18 +4,11 @@ import { styled } from '@mui/material/styles';
 import Page from '../components/Page';
 // sections
 import HomeHero from '../sections/home/HomeHero';
-// config
-import { MAIN_HEADER_DESKTOP, MAIN_HEADER_MOBILE } from '../config';
-
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled('div')(({ theme }) => ({
-  height: '100%',
-  paddingTop: MAIN_HEADER_MOBILE,
-  [theme.breakpoints.up('xs')]: {
-    paddingTop: MAIN_HEADER_DESKTOP
-  },
+const RootStyle = styled('div')(() => ({
+  height: '100%'
 }));
 
 // ----------------------------------------------------------------------

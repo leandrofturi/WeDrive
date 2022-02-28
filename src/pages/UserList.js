@@ -1,5 +1,4 @@
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
@@ -19,7 +18,7 @@ import {
   TablePagination,
 } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../paths';
+import { PATH_COMPANY } from '../paths';
 // hooks
 import useSettings from '../hooks/useSettings';
 // _mock_
@@ -37,10 +36,10 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/user/li
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
+  { id: 'name', label: 'Nome', alignRight: false },
+  { id: 'city', label: 'Cidade', alignRight: false },
+  { id: 'district', label: 'Bairro', alignRight: false },
+  { id: 'role', label: 'Função', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
@@ -57,7 +56,7 @@ export default function UserList() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -118,23 +117,22 @@ export default function UserList() {
   const isNotFound = !filteredUsers.length && Boolean(filterName);
 
   return (
-    <Page title="User: List">
+    <Page title="Colaboradores">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="User List"
+          heading="Colaboradores"
           links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'User', href: PATH_DASHBOARD.user.root },
-            { name: 'List' },
+            { name: 'Dashboard', href: PATH_COMPANY.dashboard },
+            { name: 'Colaboradores', href: PATH_COMPANY.user.list },
           ]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.user.newUser}
+              to={PATH_COMPANY.user.newUser}
               startIcon={<Iconify icon={'eva:plus-fill'} />}
             >
-              New User
+              Novo Colaborador
             </Button>
           }
         />
@@ -161,7 +159,7 @@ export default function UserList() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, role, status, city, avatarUrl, district } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -182,20 +180,20 @@ export default function UserList() {
                             {name}
                           </Typography>
                         </TableCell>
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{city}</TableCell>
+                        <TableCell align="left">{district}</TableCell>
                         <TableCell align="left">{role}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                         <TableCell align="left">
                           <Label
                             variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                            color={(status === 'banned' && 'error') || 'success'}
+                            color={(status === 'Inativo' && 'error') || 'success'}
                           >
-                            {sentenceCase(status)}
+                            {status}
                           </Label>
                         </TableCell>
 
                         <TableCell align="right">
-                          <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                          <UserMoreMenu onDelete={() => handleDeleteUser(id)} id={id} />
                         </TableCell>
                       </TableRow>
                     );

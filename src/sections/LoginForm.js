@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // @mui
 import { Link, Stack, Alert, Checkbox, TextField, IconButton, InputAdornment, FormControlLabel } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -10,11 +10,14 @@ import useAuth from '../hooks/useAuth';
 import useIsMountedRef from '../hooks/useIsMountedRef';
 // components
 import Iconify from '../components/Iconify';
+//
+import { PATH_APP, PATH_COMPANY } from '../paths';
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const isMountedRef = useIsMountedRef();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -35,6 +38,12 @@ export default function LoginForm() {
         await login(values.email, values.password);
         if (isMountedRef.current) {
           setSubmitting(false);
+        }
+        if (window.location.pathname.endsWith('company')) {
+          navigate(PATH_COMPANY.dashboard)
+        }
+        else {
+          navigate(PATH_APP.departures)
         }
       } catch (error) {
         resetForm();

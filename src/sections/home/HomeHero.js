@@ -87,7 +87,7 @@ export default function HomeHero() {
                 Inicie uma <br />
                 nova jornada <br /> com a
                 <Typography component="span" variant="h1" sx={{ color: 'primary.main' }}>
-                  &nbsp;WeDrive
+                  &nbsp;WEdrive
                 </Typography>
               </Typography>
             </m.div>
@@ -104,7 +104,7 @@ export default function HomeHero() {
                   size="large"
                   variant="contained"
                   component={RouterLink}
-                  to="#"
+                  to={PATH_AUTH.loginCompany}
                   startIcon={<Iconify icon={'bi:pin-map'} width={20} height={20} />}
                 >
                   Sou empresa

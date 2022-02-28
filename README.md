@@ -1,30 +1,47 @@
-# Getting Started with Create React App
+# WEdrive
+
+## Projet~ao 2022
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 1.Install
 
-In the project directory, you can run:
+### npm
 
-### `npm start`
+```
+npm i
+or
+npm i --legacy-peer-deps
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+yarn install
+```
 
-### `npm test`
+## 2.Start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm start
+or
+yarn start
+```
 
-### `npm run build`
+## 3.Build
 
-Builds the app for production to the `build` folder.\
+```sh
+npm run build or yarn build
+```
+
+Builds the app for production to the `build` folder.
+
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The build is minified and the filenames include the hashes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Your app is ready to be deployed.
+
+## User Guide
+
+You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).

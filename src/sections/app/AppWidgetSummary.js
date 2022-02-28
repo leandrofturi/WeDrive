@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
 // @mui
 import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Typography, Stack } from '@mui/material';
+import { Box, Card, Typography, Stack, Tooltip } from '@mui/material';
 // utils
 import { fNumber, fPercent } from '../../utils/formatNumber';
 // components
@@ -66,10 +66,12 @@ export default function AppWidgetSummary({ title, percent, total, chartColor, ch
           >
             <Iconify width={16} height={16} icon={percent >= 0 ? 'eva:trending-up-fill' : 'eva:trending-down-fill'} />
           </IconWrapperStyle>
-          <Typography component="span" variant="subtitle2">
-            {percent > 0 && '+'}
-            {fPercent(percent)}
-          </Typography>
+          <Tooltip title="Em relação ao mês anterior">
+            <Typography component="span" variant="subtitle2">
+              {percent > 0 && '+'}
+              {fPercent(percent)}
+            </Typography>
+          </Tooltip>
         </Stack>
 
         <Typography variant="h3">{fNumber(total)}</Typography>

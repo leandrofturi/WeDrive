@@ -4,8 +4,9 @@ function path(root, sublink) {
   return `${root}${sublink}`;
 }
 
+const ROOTS_APP = '/app';
 const ROOTS_AUTH = '/auth';
-const ROOTS_DASHBOARD = '/dashboard';
+const ROOTS_COMPANY = '/company';
 
 // ----------------------------------------------------------------------
 
@@ -25,14 +26,20 @@ export const PATH_PAGE = {
   page500: '/500',
 };
 
-export const PATH_DASHBOARD = {
-  root: ROOTS_DASHBOARD,
-  general: {
-    app: path(ROOTS_DASHBOARD, '/app'),
-  },
+export const PATH_COMPANY = {
+  root: ROOTS_COMPANY,
+  dashboard: path(ROOTS_COMPANY, '/dashboard'),
   user: {
-    root: path(ROOTS_DASHBOARD, '/account'),
-    account: path(ROOTS_DASHBOARD, '/account'),
-    newUser: path(ROOTS_DASHBOARD, '/new-user'),
+    account: path(ROOTS_COMPANY, '/account'),
+    newUser: path(ROOTS_COMPANY, '/new-user'),
+    list: path(ROOTS_COMPANY, '/list-users'),
+  }
+};
+
+export const PATH_APP = {
+  root: ROOTS_APP,
+  departures: path(ROOTS_APP, '/departures'),
+  user: {
+    account: path(ROOTS_APP, '/account'),
   }
 };

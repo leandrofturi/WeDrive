@@ -6,6 +6,7 @@ import AuthGuard from './guards/AuthGuard';
 import GuestGuard from './guards/GuestGuard';
 // layouts
 import MainLayout from './layouts/main';
+import DashboardLayout from './layouts/dashboard';
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +32,23 @@ export default function Router() {
           ),
         },
         {
+          path: 'login-company',
+          element: (
+            <GuestGuard>
+              <Login />
+            </GuestGuard>
+          ),
+        },
+        {
           path: 'register',
+          element: (
+            <GuestGuard>
+              <Register />
+            </GuestGuard>
+          ),
+        },
+        {
+          path: 'register-company',
           element: (
             <GuestGuard>
               <Register />
@@ -42,19 +59,33 @@ export default function Router() {
     },
 
     {
-      path: 'app',
+      path: 'company',
       element: (
         <AuthGuard>
-          <MainLayout />
+          <DashboardLayout />
         </AuthGuard>
       ),
       children: [
-        { element: <Navigate to="/app/dashboard" replace />, index: true },
+        { element: <Navigate to="/company/dashboard" replace />, index: true },
         { path: 'dashboard', element: <GeneralApp /> },
-        { path: 'departures', element: <Departures /> },
         { path: 'account', element: <Account /> },
         { path: 'new-user', element: <UserCreate /> },
-        { path: 'users', element: <UserList /> },
+        { path: ':id/edit-user', element: <UserCreate /> },
+        { path: 'list-users', element: <UserList /> },
+      ]
+    },
+
+    {
+      path: 'app',
+      element: (
+        <AuthGuard>
+          <DashboardLayout />
+        </AuthGuard>
+      ),
+      children: [
+        { element: <Navigate to="/app/departures" replace />, index: true },
+        { path: 'departures', element: <Departures /> },
+        { path: 'account', element: <UserAccount /> },
       ]
     },
 
@@ -82,5 +113,6 @@ const GeneralApp = Loadable(lazy(() => import('./pages/GeneralApp')));
 const Departures = Loadable(lazy(() => import('./pages/Departures')));
 
 const Account = Loadable(lazy(() => import('./pages/Account')));
+const UserAccount = Loadable(lazy(() => import('./pages/UserAccount')));
 const UserCreate = Loadable(lazy(() => import('./pages/UserCreate')));
 const UserList = Loadable(lazy(() => import('./pages/UserList')));

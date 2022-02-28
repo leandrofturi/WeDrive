@@ -14,8 +14,8 @@ const LINKS = [
   {
     headline: 'WeDrive',
     children: [
-      { name: 'Sobre nós', href: PATH_PAGE.about },
-      { name: 'Contate-nos', href: PATH_PAGE.contact },
+      { name: 'Sobre nós', href: '#' },
+      { name: 'Contate-nos', href: '#' },
       { name: 'FAQs', href: PATH_PAGE.faqs },
     ],
   },

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik, Form, FormikProvider } from 'formik';
 // @mui
-import { Stack, TextField, IconButton, InputAdornment, Alert } from '@mui/material';
+import { Stack, TextField, IconButton, InputAdornment, Alert, Divider, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
 import useAuth from '../hooks/useAuth';
@@ -30,11 +30,12 @@ export default function RegisterForm() {
       lastName: '',
       email: '',
       password: '',
+      companyName: '',
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
       try {
-        await register(values.email, values.password, values.firstName, values.lastName);
+        await register(values.email, values.password, values.firstName, values.lastName, values.companyName);
         if (isMountedRef.current) {
           setSubmitting(false);
         }
@@ -58,7 +59,7 @@ export default function RegisterForm() {
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <TextField
               fullWidth
-              label="First name"
+              label="Nome"
               {...getFieldProps('firstName')}
               error={Boolean(touched.firstName && errors.firstName)}
               helperText={touched.firstName && errors.firstName}
@@ -66,7 +67,7 @@ export default function RegisterForm() {
 
             <TextField
               fullWidth
-              label="Last name"
+              label="Sobrenome"
               {...getFieldProps('lastName')}
               error={Boolean(touched.lastName && errors.lastName)}
               helperText={touched.lastName && errors.lastName}
@@ -77,7 +78,7 @@ export default function RegisterForm() {
             fullWidth
             autoComplete="username"
             type="email"
-            label="Email address"
+            label="E-mail"
             {...getFieldProps('email')}
             error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
@@ -87,7 +88,7 @@ export default function RegisterForm() {
             fullWidth
             autoComplete="current-password"
             type={showPassword ? 'text' : 'password'}
-            label="Password"
+            label="Senha"
             {...getFieldProps('password')}
             InputProps={{
               endAdornment: (
@@ -102,8 +103,22 @@ export default function RegisterForm() {
             helperText={touched.password && errors.password}
           />
 
+          {window.location.pathname.endsWith('company') &&
+            <>
+              <Divider />
+              <Typography variant="body1" sx={{ pt: 2 }} color='text.disabled'>
+                Dados da Empresa
+              </Typography>
+              <TextField
+                fullWidth
+                label="Nome da empresa"
+                {...getFieldProps('companyName')}
+              />
+            </>
+          }
+
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-            Register
+            Criar conta
           </LoadingButton>
         </Stack>
       </Form>

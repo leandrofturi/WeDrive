@@ -13,7 +13,12 @@ export default function GuestGuard({ children }) {
   const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
-    return <Navigate to="/app" />;
+    if (window.location.pathname.endsWith('company')) {
+      return <Navigate to="/company" />;
+    }
+    else {
+      return <Navigate to="/app" />;
+    }
   }
 
   return <>{children}</>;

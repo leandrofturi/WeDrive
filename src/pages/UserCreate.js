@@ -1,9 +1,8 @@
-import { paramCase, capitalCase } from 'change-case';
 import { useParams, useLocation } from 'react-router-dom';
 // @mui
 import { Container } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../paths';
+import { PATH_COMPANY } from '../paths';
 // hooks
 import useSettings from '../hooks/useSettings';
 // _mock_
@@ -19,24 +18,24 @@ import UserNewForm from '../sections/user/UserNewForm';
 export default function UserCreate() {
   const { themeStretch } = useSettings();
   const { pathname } = useLocation();
-  const { name = '' } = useParams();
+  const { id = '' } = useParams();
   const isEdit = pathname.includes('edit');
 
-  const currentUser = _userList.find((user) => paramCase(user.name) === name);
+  const currentUser = _userList.find((user) => user.id === id);
 
   return (
-    <Page title="User: Create a new user">
+    <Page title="Novo Colaborador">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading={!isEdit ? 'Create a new user' : 'Edit user'}
+          heading={!isEdit ? 'Novo colaborador' : 'Editar Colaborador'}
           links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'User', href: PATH_DASHBOARD.user.list },
-            { name: !isEdit ? 'New user' : capitalCase(name) },
+            { name: 'Dashboard', href: PATH_COMPANY.dashboard },
+            { name: 'Colaboradores', href: PATH_COMPANY.user.list },
+            { name: !isEdit ? 'Novo Colaborador' : currentUser?.name },
           ]}
         />
 
-        <UserNewForm isEdit={isEdit} currentUser={currentUser} />
+        <UserNewForm isEdit={isEdit} user={currentUser} />
       </Container>
     </Page>
   );

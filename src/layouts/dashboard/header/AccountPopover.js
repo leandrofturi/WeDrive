@@ -5,39 +5,49 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, MenuItem, Typography, Stack } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_APP, PATH_COMPANY } from '../../../paths';
 // hooks
 import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import MyAvatar from '../../../components/MyAvatar';
 import MenuPopover from '../../../components/MenuPopover';
+import Iconify from '../../../components/Iconify';
 import { IconButtonAnimate } from '../../../components/animate';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
-    linkTo: '/',
+    label: 'Dashboard',
+    linkTo: PATH_COMPANY.dashboard,
+    icon: "charm:chart-line"
   },
   {
-    label: 'Profile',
-    linkTo: PATH_DASHBOARD.user.profile,
+    label: 'Conta',
+    linkTo: PATH_COMPANY.user.account,
+    icon: "mdi:account"
+  },
+];
+
+const MENU_OPTIONS_APP = [
+  {
+    label: 'Partidas',
+    linkTo: PATH_APP.departures,
+    icon: "mdi-bus"
   },
   {
-    label: 'Settings',
-    linkTo: PATH_DASHBOARD.user.account,
+    label: 'Conta',
+    linkTo: PATH_APP.user.account,
+    icon: "mdi:account"
   },
 ];
 
 // ----------------------------------------------------------------------
 
-export default function AccountPopover() {
+export default function AccountPopover({ app }) {
   const navigate = useNavigate();
   const anchorRef = useRef(null);
   const { user, logout } = useAuth();
-  const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
 
@@ -51,10 +61,8 @@ export default function AccountPopover() {
   const handleLogout = async () => {
     try {
       await logout?.();
-      if (isMountedRef.current) {
-        navigate('/');
-        handleClose();
-      }
+      navigate('/');
+      handleClose();
     } catch (error) {
       console.error(error);
       enqueueSnackbar('Unable to logout', { variant: 'error' });
@@ -98,7 +106,7 @@ export default function AccountPopover() {
 
         <Divider />
         <Stack spacing={0.5} sx={{ p: 1 }}>
-          {MENU_OPTIONS.map((option) => (
+          {(app ? MENU_OPTIONS_APP : MENU_OPTIONS).map((option) => (
             <MenuItem
               key={option.label}
               to={option.linkTo}
@@ -106,14 +114,35 @@ export default function AccountPopover() {
               onClick={handleClose}
               sx={{ typography: 'body2', py: 1, px: 2, borderRadius: 1 }}
             >
+              <Box
+                component={Iconify}
+                icon={option.icon}
+                sx={{
+                  mr: 2,
+                  width: 24,
+                  height: 24,
+                }}
+              />
               {option.label}
             </MenuItem>
           ))}
         </Stack>
         <Divider />
 
-        <MenuItem onClick={handleLogout} sx={{ typography: 'body2', py: 1, px: 2, borderRadius: 1, m: 1 }}>
-          Logout
+        <MenuItem
+          onClick={handleLogout}
+          sx={{ color: 'error.main', typography: 'body2', py: 1, px: 2, borderRadius: 1, m: 1 }}
+        >
+          <Box
+            component={Iconify}
+            icon={'mdi:logout'}
+            sx={{
+              mr: 2,
+              width: 24,
+              height: 24,
+            }}
+          />
+          Sair
         </MenuItem>
       </MenuPopover>
     </>

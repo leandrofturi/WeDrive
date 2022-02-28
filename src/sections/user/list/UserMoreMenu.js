@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { paramCase } from 'change-case';
 import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { Menu, MenuItem, IconButton } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../../../paths';
+import { PATH_COMPANY } from '../../../paths';
 // components
 import Iconify from '../../../components/Iconify';
 
@@ -13,10 +12,10 @@ import Iconify from '../../../components/Iconify';
 
 UserMoreMenu.propTypes = {
   onDelete: PropTypes.func,
-  userName: PropTypes.string,
+  id: PropTypes.string,
 };
 
-export default function UserMoreMenu({ onDelete, userName }) {
+export default function UserMoreMenu({ onDelete, id }) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,16 +37,16 @@ export default function UserMoreMenu({ onDelete, userName }) {
       >
         <MenuItem onClick={onDelete} sx={{ borderRadius: 1, typography: 'body2' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2, width: 24, height: 24 }} />
-          Delete
+          Excluir
         </MenuItem>
 
         <MenuItem
           component={RouterLink}
-          to={`${PATH_DASHBOARD.user.root}/${paramCase(userName)}/edit`}
+          to={`${PATH_COMPANY.root}/${id}/edit-user`}
           sx={{ borderRadius: 1, typography: 'body2' }}
         >
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
-          Edit
+          Editar
         </MenuItem>
       </Menu>
     </>

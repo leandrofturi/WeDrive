@@ -1,24 +1,54 @@
 import { replace } from 'lodash';
 import numeral from 'numeral';
 
+numeral.locale('pt-BR');
+
 // ----------------------------------------------------------------------
 
 export function fCurrency(number) {
-  return numeral(number).format(Number.isInteger(number) ? '$0,0' : '$0,0.00');
+  try {
+    const formatMoneyBR = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format;
+    return formatMoneyBR(number);
+  } catch {
+    return number;
+  }
 }
 
 export function fPercent(number) {
-  return numeral(number / 100).format('0.0%');
+  try {
+    return numeral(number / 100).format('0.0%');
+  } catch {
+    return number;
+  }
 }
 
 export function fNumber(number) {
-  return numeral(number).format();
+  try {
+    return numeral(number).format();
+  } catch {
+    return number;
+  }
 }
 
 export function fShortenNumber(number) {
-  return replace(numeral(number).format('0.00a'), '.00', '');
+  try {
+    return replace(numeral(number).format('0.00a'), '.00', '');
+  } catch {
+    return number;
+  }
+}
+
+function bytesToSize(bytes) {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return '0 Byte';
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+  return `${Math.round(bytes / 1024 ** i, 2)} ${sizes[i]}`;
 }
 
 export function fData(number) {
-  return numeral(number).format('0.0 b');
+  try {
+    return bytesToSize(number);
+  } catch {
+    return number;
+  }
 }

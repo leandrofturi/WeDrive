@@ -41,6 +41,15 @@ const handlers = {
       isAuthenticated: true,
       user
     };
+  },
+  UPDATE: (state, action) => {
+    const { user } = action.payload;
+
+    return {
+      ...state,
+      isAuthenticated: true,
+      user
+    };
   }
 };
 
@@ -50,6 +59,7 @@ const AuthContext = createContext({
   ...initialState,
   login: () => Promise.resolve(),
   register: () => Promise.resolve(),
+  update: () => Promise.resolve(),
   logout: () => Promise.resolve(),
 });
 
@@ -108,7 +118,7 @@ function AuthProvider({ children }) {
       });
     }
 
-    if (email && user.email === email && password && user.password === password) {
+    if (email && user?.email === email && password && user?.password === password) {
       dispatch({
         type: 'LOGIN',
         payload: { user }
@@ -125,12 +135,13 @@ function AuthProvider({ children }) {
     }
   };
 
-  const register = async (email, password, firstName, lastName) => {
+  const register = async (email, password, firstName, lastName, companyName) => {
     const user = {
       email,
       password,
       firstName,
-      lastName
+      lastName,
+      companyName
     };
     window.localStorage.setItem('user', JSON.stringify(user));
 
@@ -140,7 +151,17 @@ function AuthProvider({ children }) {
     });
   };
 
+  const update = async (values) => {
+    window.localStorage.setItem('user', JSON.stringify(values));
+
+    dispatch({
+      type: 'UPDATE',
+      payload: { values }
+    });
+  };
+
   const logout = async () => {
+    window.localStorage.clear();
     dispatch({ type: 'LOGOUT' });
   };
 
@@ -150,6 +171,7 @@ function AuthProvider({ children }) {
         ...state,
         login,
         register,
+        update,
         logout
       }}
     >

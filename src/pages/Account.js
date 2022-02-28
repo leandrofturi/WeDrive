@@ -1,9 +1,8 @@
-import { capitalCase } from 'change-case';
 import { useState } from 'react';
 // @mui
 import { Container, Tab, Box, Tabs } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../paths';
+import { PATH_COMPANY } from '../paths';
 // hooks
 import useSettings from '../hooks/useSettings';
 // components
@@ -24,25 +23,27 @@ export default function Account() {
   const ACCOUNT_TABS = [
     {
       value: 'conta',
+      label: 'Dados pessoais',
       icon: <Iconify icon={'ic:round-account-box'} width={20} height={20} />,
-      component: <AccountGeneral />,
+      component: <AccountGeneral isCompany={window.location.pathname.startsWith('/company')} />,
     },
     {
       value: 'notificacoes',
+      label: 'Notificações',
       icon: <Iconify icon={'eva:bell-fill'} width={20} height={20} />,
       component: <AccountNotifications />,
     }
   ];
 
   return (
-    <Page title="User: Account Settings">
+    <Page title="Dados pessoais">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Account"
+          heading="Dados pessoais"
           links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'User', href: PATH_DASHBOARD.user.root },
-            { name: 'Account Settings' },
+            { name: 'Dashboard', href: PATH_COMPANY.dashboard },
+            { name: 'Dados pessoais', href: PATH_COMPANY.user.account },
+            { name: 'Configurações' },
           ]}
         />
 
@@ -54,7 +55,7 @@ export default function Account() {
           onChange={(e, value) => setCurrentTab(value)}
         >
           {ACCOUNT_TABS.map((tab) => (
-            <Tab disableRipple key={tab.value} label={capitalCase(tab.value)} icon={tab.icon} value={tab.value} />
+            <Tab disableRipple key={tab.value} label={tab.label} icon={tab.icon} value={tab.value} />
           ))}
         </Tabs>
 

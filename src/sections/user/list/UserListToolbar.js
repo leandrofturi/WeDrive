@@ -57,7 +57,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
         <SearchStyle
           value={filterName}
           onChange={(e) => onFilterName(e.target.value)}
-          placeholder="Search user..."
+          placeholder="Buscar colaborador..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon={'eva:search-fill'} sx={{ color: 'text.disabled' }} />
@@ -67,13 +67,13 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName,
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title="Excluir">
           <IconButton onClick={onDeleteUsers}>
             <Iconify icon={'eva:trash-2-outline'} />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filter list">
+        <Tooltip title="Filtros">
           <IconButton>
             <Iconify icon={'ic:round-filter-list'} />
           </IconButton>

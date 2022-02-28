@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import MuiPhoneNumber from "material-ui-phone-number";
 import { Box, Grid, Card, Divider, TextField } from '@mui/material';
 //
-import { PATH_DASHBOARD } from '../../paths';
+import { PATH_COMPANY } from '../../paths';
 
 // ----------------------------------------------------------------------
 
@@ -30,15 +30,17 @@ export default function UserNewForm({ isEdit, user }) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      given_name: user?.attributes?.given_name || '',
-      family_name: user?.attributes?.family_name || '',
-      email: user?.attributes?.email || '',
-      phone_number: user?.attributes?.phone_number || '+5599999999999',
-      street: user?.attributes?.street || '',
-      number: user?.attributes?.number || '',
-      complement: user?.attributes?.complement || '',
-      district: user?.attributes?.district || '',
-      state: user?.attributes?.state || ''
+      given_name: user?.given_name || '',
+      family_name: user?.family_name || '',
+      email: user?.email || '',
+      phone_number: user?.phone_number || '+5599999999999',
+      role: user?.role || '',
+      street: user?.street || '',
+      number: user?.number || '',
+      complement: user?.complement || '',
+      district: user?.district || '',
+      city: user?.city || '',
+      state: user?.state || ''
     },
     validationSchema: NewUserSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
@@ -48,7 +50,7 @@ export default function UserNewForm({ isEdit, user }) {
         resetForm();
         setSubmitting(false);
         enqueueSnackbar(!isEdit ? 'Usuário criado' : 'Usuário atualizado', { variant: 'success' });
-        navigate(PATH_DASHBOARD.user.list);
+        navigate(PATH_COMPANY.user.list);
       } catch (error) {
         enqueueSnackbar(error.message, { variant: 'error' });
         setSubmitting(false);
@@ -146,6 +148,10 @@ export default function UserNewForm({ isEdit, user }) {
                   />
                 </Grid>
 
+                <Grid item xs={12} md={12}>
+                  <TextField fullWidth label="Função" {...getFieldProps('role')} />
+                </Grid>
+
                 <Grid item xs={12} md={12} sx={{ paddingTop: 2 }}>
                   <Divider orientation='horizontal' flexItem sx={{ borderStyle: 'dashed' }} />
                 </Grid>
@@ -154,16 +160,21 @@ export default function UserNewForm({ isEdit, user }) {
                   <TextField fullWidth label="Rua" {...getFieldProps('street')} />
                 </Grid>
 
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={2}>
                   <TextField fullWidth label="Número" {...getFieldProps('number')} />
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={5}>
                   <TextField fullWidth label="Complemento" {...getFieldProps('complement')} />
                 </Grid>
 
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={5}>
                   <TextField fullWidth label="Bairro" {...getFieldProps('district')} />
                 </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <TextField fullWidth label="Cidade" {...getFieldProps('city')} />
+                </Grid>
+
                 <Grid item xs={12} md={6}>
                   <TextField
                     select
