@@ -30,4 +30,9 @@ export const PATH_DASHBOARD = {
   general: {
     app: path(ROOTS_DASHBOARD, '/app'),
   },
+  user: {
+    root: path(ROOTS_DASHBOARD, '/account'),
+    account: path(ROOTS_DASHBOARD, '/account'),
+    newUser: path(ROOTS_DASHBOARD, '/new-user'),
+  }
 };

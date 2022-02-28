@@ -1,0 +1,7 @@
+.qr-image-wrapper section { 
+    border-radius: 16px;
+}
+
+.qr-image-wrapper section div {
+    box-shadow: #ffffff80 0px 0px 0px 5px inset !important;
+}

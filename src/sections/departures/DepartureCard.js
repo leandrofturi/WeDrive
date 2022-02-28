@@ -76,7 +76,7 @@ function Capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export default function DepartureCard({ setOpenMap }) {
+export default function DepartureCard({ setOpenMap, setCheckIn }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -193,7 +193,8 @@ export default function DepartureCard({ setOpenMap }) {
                       alignItems="center"
                     >
                       <Grid item>
-                        <Button disabled={departure.to.time < new Date()} size="small" variant="contained" color="primary" sx={{ mb: 1.5, ml: 1.5 }}>
+                        <Button disabled={departure.to.time < new Date()} size="small" variant="contained" color="primary" sx={{ mb: 1.5, ml: 1.5 }}
+                          onClick={() => { setCheckIn(departure); setOpen(i) }}>
                           Check-in
                         </Button>
                       </Grid>
@@ -206,7 +207,8 @@ export default function DepartureCard({ setOpenMap }) {
                   </Grid>
 
                   <Grid item >
-                    <Button size="small" variant="outlined" color="primary" sx={{ mb: 1.5, mr: 1.5 }} endIcon={open === i ? <Iconify icon="mdi-menu-up" /> : <Iconify icon="mdi-menu-down" />} onClick={() => { open === i ? setOpen(null) : setOpen(i); setOpenMap?.(_departures[i].to)} }>
+                    <Button size="small" variant="outlined" color="primary" sx={{ mb: 1.5, mr: 1.5 }} endIcon={open === i ? <Iconify icon="mdi-menu-up" /> : <Iconify icon="mdi-menu-down" />}
+                      onClick={() => { open === i ? setOpen(null) : setOpen(i); setOpenMap?.(_departures[i].to) }}>
                       Detalhes
                     </Button>
                   </Grid>

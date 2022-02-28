@@ -49,8 +49,12 @@ export default function Router() {
         </AuthGuard>
       ),
       children: [
-        { element: <Navigate to="/app/departures" replace />, index: true },
+        { element: <Navigate to="/app/dashboard" replace />, index: true },
+        { path: 'dashboard', element: <GeneralApp /> },
         { path: 'departures', element: <Departures /> },
+        { path: 'account', element: <Account /> },
+        { path: 'new-user', element: <UserCreate /> },
+        { path: 'users', element: <UserList /> },
       ]
     },
 
@@ -74,4 +78,9 @@ const Register = Loadable(lazy(() => import('./pages/Register')));
 const Home = Loadable(lazy(() => import('./pages/Home')));
 const FAQs = Loadable(lazy(() => import('./pages/FAQs')));
 
+const GeneralApp = Loadable(lazy(() => import('./pages/GeneralApp')));
 const Departures = Loadable(lazy(() => import('./pages/Departures')));
+
+const Account = Loadable(lazy(() => import('./pages/Account')));
+const UserCreate = Loadable(lazy(() => import('./pages/UserCreate')));
+const UserList = Loadable(lazy(() => import('./pages/UserList')));
