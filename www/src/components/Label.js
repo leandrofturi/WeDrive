@@ -13,6 +13,7 @@ const RootStyle = styled('span')(({ theme, ownerState }) => {
     backgroundColor: theme.palette[color].main,
   });
 
+
   const styleOutlined = (color) => ({
     color: theme.palette[color].main,
     backgroundColor: 'transparent',
