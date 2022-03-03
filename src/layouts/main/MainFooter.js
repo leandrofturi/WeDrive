@@ -14,8 +14,8 @@ const LINKS = [
   {
     headline: 'WeDrive',
     children: [
-      { name: 'Sobre nós', href: '#' },
-      { name: 'Contate-nos', href: '#' },
+      { name: 'Sobre nós', href: PATH_PAGE.about },
+      { name: 'Contate-nos', href: PATH_PAGE.contact },
       { name: 'FAQs', href: PATH_PAGE.faqs },
     ],
   },
@@ -57,7 +57,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a ultrices sem, vitae pharetra eros.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a ultrices sem, vitae pharetra eros.
             </Typography>
 
             <Stack

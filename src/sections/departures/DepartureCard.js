@@ -118,11 +118,11 @@ export default function DepartureCard({ setOpenMap, setCheckIn }) {
                         </StepLabel>
 
                         <StepContent>
-                          <Typography color="text.primary" >
+                          <Typography variant="body1" color="text.primary" >
                             <strong>{_departures[open].from.address}</strong >
                           </Typography>
 
-                          <Typography sx={{ mb: 1.5 }} color="text.secondary" >
+                          <Typography variant="body2" sx={{ mb: 1.5 }} color="text.secondary" >
                             {format(_departures[open].from.time, "dd MMM yyyy à's' HH:mm", { locale: ptBR })}
                           </Typography>
                         </StepContent>
@@ -135,11 +135,11 @@ export default function DepartureCard({ setOpenMap, setCheckIn }) {
                           </Typography>
                         </StepLabel>
                         <StepContent>
-                          <Typography color="text.primary" >
+                          <Typography variant="body1" color="text.primary" >
                             <strong>{_departures[open].to.address}</strong >
                           </Typography>
 
-                          <Typography sx={{ mb: 1.5 }} color="text.secondary" >
+                          <Typography variant="body2" sx={{ mb: 1.5 }} color="text.secondary" >
                             {format(_departures[open].to.time, "dd MMM yyyy à's' HH:mm", { locale: ptBR })}
                           </Typography>
                         </StepContent>

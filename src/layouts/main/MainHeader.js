@@ -55,7 +55,7 @@ export default function MainHeader() {
 
   const isDesktop = useResponsive('up', 'md');
 
-  const isHome = pathname === '/';
+  const isHome = !pathname.startsWith('/auth') && !pathname.startsWith('/company') && !pathname.startsWith('/app');
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>

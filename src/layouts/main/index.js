@@ -11,7 +11,7 @@ import MainHeader from './MainHeader';
 
 export default function MainLayout() {
   const { pathname } = useLocation();
-  const isHome = pathname === '/';
+  const isHome = !pathname.startsWith('/auth') && !pathname.startsWith('/company') && !pathname.startsWith('/app');
 
   return (
     <Stack sx={{ minHeight: 1 }}>

@@ -95,8 +95,8 @@ export default function Router() {
       element: <MainLayout />,
       children: [
         { element: <Home />, index: true },
-        { path: 'about-us', element: <div /> },
-        { path: 'contact-us', element: <div /> },
+        { path: 'about-us', element: <About /> },
+        { path: 'contact-us', element: <Contact /> },
         { path: 'faqs', element: <FAQs /> },
       ]
     }
@@ -107,6 +107,8 @@ const Login = Loadable(lazy(() => import('./pages/Login')));
 const Register = Loadable(lazy(() => import('./pages/Register')));
 
 const Home = Loadable(lazy(() => import('./pages/Home')));
+const About = Loadable(lazy(() => import('./pages/About')));
+const Contact = Loadable(lazy(() => import('./pages/Contact')));
 const FAQs = Loadable(lazy(() => import('./pages/FAQs')));
 
 const GeneralApp = Loadable(lazy(() => import('./pages/GeneralApp')));

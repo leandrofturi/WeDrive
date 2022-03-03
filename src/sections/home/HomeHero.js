@@ -87,7 +87,7 @@ export default function HomeHero() {
                 Inicie uma <br />
                 nova jornada <br /> com a
                 <Typography component="span" variant="h1" sx={{ color: 'primary.main' }}>
-                  &nbsp;WEdrive
+                  &nbsp;WeDrive
                 </Typography>
               </Typography>
             </m.div>
