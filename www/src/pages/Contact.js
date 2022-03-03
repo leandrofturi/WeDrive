@@ -15,7 +15,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled('div')(({ theme }) => ({
+const RootStyle = styled('div')(() => ({
   margin: 0,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
@@ -23,10 +23,6 @@ const RootStyle = styled('div')(({ theme }) => ({
     'url(https://minimal-assets-api.vercel.app/assets/overlay.svg), url(/assets/ufes.jpg)',
   height: '100vh',
   padding: 0,
-  marginTop: -MAIN_HEADER_MOBILE,
-  [theme.breakpoints.up('xs')]: {
-    marginTop: -MAIN_HEADER_DESKTOP
-  },
 }));
 
 const ContentStyle = styled('div')(({ theme }) => ({

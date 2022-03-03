@@ -1,0 +1,106 @@
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: WeDrive
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: weDrive
+    Description: WeDrive
+    Author: leandrofturi
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE
+    ReadmeUrl: README.md
+    HomePageUrl: https://github.com/leandrofturi/WeDrive
+    SemanticVersion: '0.0.1'
+    SourceCodeUrl: https://github.com/leandrofturi/WeDrive
+
+Parameters:
+  # For Amplify Console frontend hosting
+  OauthToken:
+    Type: String
+    Description: GitHub Oauth Token
+    NoEcho: true
+
+Resources:
+  # This role allows API Gateway to push execution and access logs to CloudWatch logs
+  ApiGatewayPushToCloudWatchRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Description: Push logs to CloudWatch logs from API Gateway
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - apigateway.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+      - Fn::Sub: arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
+
+  # Amplify console hosting for static website
+  AmplifyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - amplify.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+      - PolicyName: Amplify
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action: amplify:*
+            Resource: '*'
+
+  AmplifyApp:
+    Type: AWS::Amplify::App
+    Properties:
+      Name: WeDriveApp
+      Repository: https://github.com/leandrofturi/WeDrive
+      Description: WeDrive app
+      OauthToken:
+        Ref: OauthToken
+      BuildSpec: "version: 0.1\nfrontend:\n  phases:\n 
+        \    preBuild:\n      commands:\n      - nvm install v16.13.1 && nvm use v16.13.1\n
+        \    build:\n      commands:\n\
+        \        - cd www/src\n        - npm install\n        - npm run build\n  artifacts:\n\
+        \    baseDirectory: www/build/\n    files:\n      - '**/*'"
+      IAMServiceRole:
+        Fn::GetAtt:
+        - AmplifyRole
+        - Arn
+
+  AmplifyBranchMain:
+    Type: AWS::Amplify::Branch
+    Properties:
+      BranchName: main
+      AppId:
+        Fn::GetAtt:
+        - AmplifyApp
+        - AppId
+      Description: Amplify Console Branch
+      EnableAutoBuild: true
+
+Outputs:
+  # https://github.com/awslabs/serverless-application-model/blob/main/docs/internals/generated_resources.rst#api
+  AmplifyURL:
+    Value:
+      Fn::Join:
+      - ''
+      - - https://
+        - Fn::GetAtt:
+          - AmplifyBranchMain
+          - BranchName
+        - .
+        - Fn::GetAtt:
+          - AmplifyApp
+          - DefaultDomain

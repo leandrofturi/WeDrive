@@ -13,10 +13,16 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
+  top: 40,
+  right: 0,
+  bottom: 0,
   zIndex: 0,
-  height: 560,
-  overflow: 'hidden',
-  position: 'relative',
+  margin: 'auto',
+  height: '60vh',
+  width: '80vh',
+  [theme.breakpoints.up('lg')]: {
+    right: '8%',
+  },
   borderRadius: theme.shape.borderRadius,
   '& .mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right': {
     display: 'none',

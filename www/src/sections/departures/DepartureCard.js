@@ -11,6 +11,7 @@ import {
   Button,
   Stepper,
   Divider,
+  Container,
   StepLabel,
   Typography,
   StepContent,
@@ -55,9 +56,9 @@ export default function DepartureCard({ setOpenMap, setCheckIn }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Stack spacing={5}>
+    <Container >
       <MotionInView variants={varFade().inUp}>
-        <Typography variant="h3">
+        <Typography variant="h3" sx={{ p: 3 }}>
           Partidas
         </Typography>
       </MotionInView>
@@ -65,7 +66,7 @@ export default function DepartureCard({ setOpenMap, setCheckIn }) {
       <Stack spacing={3}>
         {_departures.map((departure, i) => (
           <MotionInView variants={varFade().inUp} key={`departure_${i}`} >
-            <Card sx={{ minWidth: 275 }} >
+            <Card sx={{ minWidth: 375 }} >
               <CardContent>
                 <Grid
                   container
@@ -194,6 +195,6 @@ export default function DepartureCard({ setOpenMap, setCheckIn }) {
           </MotionInView>
         ))}
       </Stack>
-    </Stack >
+    </Container >
   );
 }

@@ -4,8 +4,6 @@ import { styled } from '@mui/material/styles';
 import { Box, Container, Typography } from '@mui/material';
 // components
 import { MotionContainer, TextAnimate, varFade } from '../../components/animate';
-// config
-import { MAIN_HEADER_DESKTOP, MAIN_HEADER_MOBILE } from '../../config';
 
 // ----------------------------------------------------------------------
 
@@ -19,10 +17,6 @@ const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     height: 660,
     padding: 0,
-  },
-  marginTop: -MAIN_HEADER_MOBILE,
-  [theme.breakpoints.up('xs')]: {
-    marginTop: -MAIN_HEADER_DESKTOP
   },
 }));
 
