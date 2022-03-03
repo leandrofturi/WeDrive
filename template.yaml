@@ -72,7 +72,7 @@ Resources:
       BuildSpec: "version: 0.1\nfrontend:\n  phases:\n 
         \    preBuild:\n      commands:\n      - nvm install v16.13.1 && nvm use v16.13.1\n
         \    build:\n      commands:\n\
-        \        - cd www/src\n        - npm install\n        - npm run build\n  artifacts:\n\
+        \        - cd www/src\n        - npm install --legacy-peer-deps\n        - npm run build\n  artifacts:\n\
         \    baseDirectory: www/build/\n    files:\n      - '**/*'"
       IAMServiceRole:
         Fn::GetAtt:

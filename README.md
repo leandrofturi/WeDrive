@@ -30,7 +30,7 @@ export OAUTH_TOKEN=***
 
 $Env:DEPLOYMENT_BUCKET="ufes-we-drive"
 $Env:STACK_NAME="we-drive"
-$Env:OAUTH_TOKEN=***
+$Env:OAUTH_TOKEN="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"
 ```
 
 ```bash
@@ -110,16 +110,20 @@ Você pode visualizar o processo de instalação pelo Amplify Console.
 ```bash
 aws cloudformation delete-stack \
   --stack-name $STACK_NAME
+
+aws cloudformation delete-stack --stack-name $Env:STACK_NAME
 ```
 
 ### Apagar o CloudWatch Log Groups
 
 ```bash
-for log_group in $(aws logs describe-log-groups --log-group-name-prefix '/aws/lambda/'$STACK_NAME --query "logGroups[*].logGroupName" --output text); do
+for log_group in $(aws logs describe-log-groups --log-group-name-prefix '/aws/lambda/'$Env:STACK_NAME --query "logGroups[*].logGroupName" --output text); do
   echo "Removing log group ${log_group}..."
   aws logs delete-log-group --log-group-name ${log_group}
   echo
 done
+
+aws logs describe-log-groups --log-group-name-prefix /aws/lambda/we-drive --query "logGroups[*].logGroupName" --output text
 ```
 ---
 
