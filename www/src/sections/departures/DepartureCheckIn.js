@@ -34,7 +34,7 @@ export default function DepartureCheckIn({ departure, setCancel }) {
   }
 
   return (
-    <Card sx={{ py: 4, height: '50vw' }}>
+    <Card sx={{ py: 4, height: 'auto' }}>
 
       {!scanned ? (
         <>
@@ -52,12 +52,8 @@ export default function DepartureCheckIn({ departure, setCancel }) {
               </Grid>
               <Grid item xs={12} style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center' }}>
                 <QrReader
-                  className='qr-image-wrapper'
+                  className='qr-image-wrapper qr-image-wrapper-content'
                   delay={500}
-                  style={{
-                    height: '70%',
-                    width: '70%',
-                  }}
                   onError={handleError}
                   onScan={handleScan}
                 />

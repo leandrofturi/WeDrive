@@ -85,7 +85,7 @@ export default function MainHeader() {
             variant="contained"
             href={PATH_AUTH.login}
           >
-            Assessar
+            Acessar
           </Button>
 
           {!isDesktop && <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />}

@@ -57,7 +57,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a ultrices sem, vitae pharetra eros.
+            A WeDrive é uma empresa criada em 2021 por 13 participantes, todos estudantes da Ufes na época. O objetivo principal da empresa é a melhora da qualidade do ar.
             </Typography>
 
             <Stack
