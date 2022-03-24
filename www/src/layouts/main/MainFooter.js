@@ -29,8 +29,8 @@ const LINKS = [
   {
     headline: 'Contato',
     children: [
-      { name: 'email@email.com', href: '#' },
-      { name: 'Av. Fernando Ferrari, 514 - Goiabeiras, Vitória - ES', href: '#' },
+      { name: 'wedrive.projetao@gmail.com', href: 'mailto:wedrive.projetao@gmail.com' },
+      { name: 'Av. Fernando Ferrari, 514 - Goiabeiras, Vitória - ES', href: 'https://goo.gl/maps/bzPz3JuYXXvpg7688' },
     ],
   },
 ];
