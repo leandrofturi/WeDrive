@@ -20,7 +20,7 @@ const RootStyle = styled('div')(() => ({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundImage:
-    'url(https://minimal-assets-api.vercel.app/assets/overlay.svg), url(/assets/ufes.jpg)',
+    'url(https://minimals.cc/assets/overlay.svg), url(/assets/ufes.jpg)',
   height: '100vh',
   padding: 0,
 }));

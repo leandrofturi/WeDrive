@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Form, FormikProvider, useFormik } from 'formik';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import MuiPhoneNumber from "material-ui-phone-number";
 import { Box, Grid, Card, Divider, TextField } from '@mui/material';
 //
 import { PATH_COMPANY } from '../../paths';
@@ -59,7 +58,7 @@ export default function UserNewForm({ isEdit, user }) {
     },
   });
 
-  const { values, errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
   const STATES_LIST = [
     { key: 'ES', label: 'Espírito Santo' },

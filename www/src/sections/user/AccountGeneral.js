@@ -4,7 +4,6 @@ import { useCallback } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import MuiPhoneNumber from "material-ui-phone-number";
 import { Box, Grid, Card, Divider, TextField, Typography, FormHelperText } from '@mui/material';
 // hooks
 import useAuth from '../../hooks/useAuth';

@@ -7,12 +7,12 @@ export const _faqs = [
   {
     id: 2,
     heading: "Posso cancelar uma viagem?",
-    detail: "Sim, basta apenas clicar no botão \'Cancelar\' na sua tela de viagens, que sua viagem será cancelada."
+    detail: "Sim, basta apenas clicar no botão 'Cancelar' na sua tela de viagens, que sua viagem será cancelada."
   },
   {
     id: 3,
     heading: "Como faço para criar minha conta?",
-    detail: "Clique no botão \'Acessar\' no canto superior direito da página principal, e na página de acessar sua conta, clique no botão \'Cadastre-se\'"
+    detail: "Clique no botão 'Acessar' no canto superior direito da página principal, e na página de acessar sua conta, clique no botão 'Cadastre-se'"
   },
   {
     id: 4,
