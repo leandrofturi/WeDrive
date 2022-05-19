@@ -27,7 +27,7 @@ export default function MainFooter() {
         >
           <Container>
             <Typography variant="caption" component="p" >
-              WEdrive
+              WeDrive
             </Typography>
 
             <Typography variant="caption" component="p">
