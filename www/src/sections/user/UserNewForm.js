@@ -136,18 +136,6 @@ export default function UserNewForm({ isEdit, user }) {
                   />
                 </Grid>
 
-                <Grid item xs={12} md={6}>
-                  <MuiPhoneNumber
-                    fullWidth
-                    label="Telefone"
-                    variant="outlined"
-                    onlyCountries={["br"]}
-                    localization={{ Brazil: 'Brasil' }}
-                    value={values.phone_number}
-                    onChange={(value) => setFieldValue('phone_number', value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''))}
-                  />
-                </Grid>
-
                 <Grid item xs={12} md={12}>
                   <TextField fullWidth label="Função" {...getFieldProps('role')} />
                 </Grid>

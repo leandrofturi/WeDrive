@@ -21,7 +21,7 @@ export default function AboutTeam() {
   const settings = {
     infinite: false,
     slidesToShow: 4,
-    centerMode: true,
+    centerMode: false,
     centerPadding: '0px',
     responsive: [
       {

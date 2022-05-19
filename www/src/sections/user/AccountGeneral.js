@@ -43,7 +43,7 @@ export default function AccountGeneral({ isCompany }) {
       given_name: user?.given_name || '',
       family_name: user?.family_name || '',
       email: user?.email || '',
-      phone_number: user?.phone_number || '+5599999999999',
+      phone_number: user?.phone_number || '',
       street: user?.street || '',
       number: user?.number || '',
       complement: user?.complement || '',
@@ -52,7 +52,7 @@ export default function AccountGeneral({ isCompany }) {
       picture: user?.picture || '',
       nameCompany: user?.nameCompany || '',
       emailCompany: user?.emailCompany || '',
-      phone_numberCompany: user?.phone_numberCompany || '+5599999999999',
+      phone_numberCompany: user?.phone_numberCompany || '',
     },
     validationSchema: UpdateUserSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
@@ -202,15 +202,6 @@ export default function AccountGeneral({ isCompany }) {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                  <MuiPhoneNumber
-                    fullWidth
-                    label="Telefone"
-                    variant="outlined"
-                    onlyCountries={["br"]}
-                    localization={{ Brazil: 'Brasil' }}
-                    value={values.phone_number}
-                    onChange={(value) => setFieldValue('phone_number', value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''))}
-                  />
                 </Grid>
 
                 <Grid item xs={12} md={12} sx={{ paddingTop: 2 }}>
@@ -247,15 +238,6 @@ export default function AccountGeneral({ isCompany }) {
                       </Grid>
 
                       <Grid item xs={12} md={6}>
-                        <MuiPhoneNumber
-                          fullWidth
-                          label="Telefone"
-                          variant="outlined"
-                          onlyCountries={["br"]}
-                          localization={{ Brazil: 'Brasil' }}
-                          value={values.phone_numberCompany}
-                          onChange={(value) => setFieldValue('phone_numberCompany', value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', ''))}
-                        />
                       </Grid>
                     </>
                   ) : (

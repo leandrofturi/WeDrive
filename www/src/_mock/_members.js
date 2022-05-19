@@ -1,12 +1,69 @@
 export const _members = [
+    
+    {
+        name: "Kevin Vieira",
+        role: "Gerência",
+        avatar: "/assets/KevinVieira.jpeg"
+    },
+    {
+        name: "Débora Ghiotti",
+        role: "Gerência",
+        avatar: "/assets/DeboraGhiotti.jpeg"
+    },
+    {
+        name: "Vinícius Risso",
+        role: "Desenvolvimento",
+        avatar: "/assets/ViniciusRisso.jpeg"
+    },
     {
         name: "Leandro Furlam",
-        role: "Dev",
-        avatar: "https://media-exp1.licdn.com/dms/image/D4E03AQEE93SxQ-q9pg/profile-displayphoto-shrink_800_800/0/1644694318199?e=1651708800&v=beta&t=0KhLKnrNWIiiqI34yXRDv4KgGXhhQ17cm5MYbymeIIs"
+        role: "Desenvolvimento",
+        avatar: "/assets/LeandroFurlan.jpeg"
     },
     {
-        name: "Leandro",
-        role: "Dev",
-        avatar: "https://minimal-assets-api.vercel.app/assets/images/members/member-1.jpg"
+        name: "Franco Rossi",
+        role: "Desenvolvimento",
+        avatar: "/assets/FrancoRossi.jpeg"
     },
+    {
+        name: "Yaggo Samuel",
+        role: "Design",
+        avatar: "/assets/YaggoSamuel.jpeg"
+    },
+    {
+        name: "Ezequiel Schneider",
+        role: "Design",
+        avatar: "/assets/EzequielSchneider.jpeg"
+    },
+    {
+        name: "Samara Motta",
+        role: "Clientes e Vendas",
+        avatar: "/assets/SamaraMotta.jpeg"
+    },
+    {
+        name: "Gerson Garcia",
+        role: "Clientes e Vendas",
+        avatar: "/assets/GersonGarcia.jpeg"
+    },
+    {
+        name: "Antonio Reis",
+        role: "Clientes e Vendas",
+        avatar: "/assets/AntonioReis.jpeg"
+    },
+    {
+        name: "Thayna Prata",
+        role: "Clientes e Vendas",
+        avatar: "/assets/ThaynaPrata.jpeg"
+    },
+    {
+        name: "José Magalhães",
+        role: "Clientes e Vendas",
+        avatar: "/assets/JoseMagalhaes.jpeg"
+    },
+    {
+        name: "Leo Di Pietro",
+        role: "Clientes e Vendas",
+        avatar: "/assets/LeoDiPietro.jpeg"
+    },
+
 ];

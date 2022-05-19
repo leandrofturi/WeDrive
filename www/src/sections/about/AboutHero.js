@@ -52,8 +52,7 @@ export default function AboutHero() {
                   fontWeight: 'fontWeightMedium',
                 }}
               >
-                Estudantes da Ufes movidos por um motivo:
-                <br /> ser aprovado em Projet~ao
+                Somos uma equipe de estudantes da Ufes, motivados a aumentar a qualidade de vida da nossa cidade.
               </Typography>
             </m.div>
           </ContentStyle>

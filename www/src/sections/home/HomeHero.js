@@ -94,7 +94,7 @@ export default function HomeHero() {
 
             <m.div variants={varFade().inRight}>
               <Typography sx={{ color: 'common.white' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a ultrices sem, vitae pharetra eros. Nam maximus volutpat ex ut congue. Cras vitae ex vitae lectus rutrum convallis. Sed diam ante, bibendum vitae tempor id, vestibulum vitae diam. Maecenas in lorem nibh.
+              O site da WeDrive é um portal que permite uma melhor gerência de seus dados, assim como respostas de perguntas frequentes, cadastro de novos usuários e novas empresas, no sistema da WeDrive. Para mais detalhes, clique em "acessar" no canto da tela.
               </Typography>
             </m.div>
 

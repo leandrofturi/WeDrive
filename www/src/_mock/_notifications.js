@@ -3,19 +3,18 @@ import { sub } from 'date-fns';
 export const _activity_options = [
   {
     key: 'not1',
-    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut vestibulum turpis',
+    label: 'Receba conselhos, dicas e anúncios sobre promoções do weDrive.',
   },
   {
     key: 'not2',
-    label: 'In posuere nulla ut convallis interdum. Aenean tincidunt, dolor ac volutpat sodales, neque elit ullamcorper nulla, at ornare ex enim vel orci.',
+    label: 'Receber comprovante de viagens por email.',
   },
-  { key: 'not3', label: 'Ut ultrices purus vel tortor viverra.' },
 ];
 
 export const _application_options = [
-  { key: 'not4', label: 'Phasellus cursus, odio eget volutpat commodo' },
-  { key: 'not5', label: 'Augue sapien sagittis eros, ac dignissim turpis lacus sed purus' },
-  { key: 'not6', label: 'Nulla at faucibus tellus.' },
+  { key: 'not3', label: 'Ativar som das notificações do aplicativo.' },
+  { key: 'not4', label: 'Modo economia de bateria.' },
+  { key: 'not5', label: 'Permitir o uso das suas informações para receber recomendações de viagens personalizadas.' },
 ];
 
 export const _notifications = [
